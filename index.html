@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interior Noticia - Audio en Noticias</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --text-primary: #121212;
+      --text-secondary: #737373;
+      --text-tertiary: #717171;
+      --border-primary: #e2e2e2;
+      --bg-neutral: #f5f5f5;
+      --chrome-darkgray: #595959;
+      --accent-pink: #f5dddd;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: var(--text-primary);
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      width: 100%;
+      height: 64px;
+      background: #fff;
+      border-bottom: 0.5px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .header-inner {
+      width: 1152px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-menu {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .header-menu span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--text-primary);
+    }
+
+    .header-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: var(--text-primary);
+    }
+
+    .header-user {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+
+    .header-user svg {
+      fill: var(--text-primary);
+    }
+
+    /* ===== BREADCRUMBS ===== */
+    .breadcrumbs {
+      width: 1152px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 24px 0;
+    }
+
+    .breadcrumbs-section {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--text-primary);
+    }
+
+    .breadcrumbs-dot {
+      width: 12px;
+      height: 12px;
+      background: #000;
+    }
+
+    .breadcrumbs-subsection {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 24px;
+      color: var(--text-primary);
+    }
+
+    /* ===== BANNER ===== */
+    .banner {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 24px;
+    }
+
+    .banner-inner {
+      width: 1220px;
+      height: 250px;
+      background: var(--accent-pink);
+    }
+
+    /* ===== ARTICLE OPENING ===== */
+    .article-opening {
+      width: 1152px;
+      margin: 0 auto;
+      padding-bottom: 80px;
+    }
+
+    .opening-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .opening-text {
+      width: 466px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .opening-author-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 157px;
+      margin-bottom: 8px;
+    }
+
+    .opening-author-avatar {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      background: #d9d9d9;
+    }
+
+    .opening-author-column {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 20px;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .opening-author-name {
+      font-size: 14px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .opening-author-name span {
+      font-weight: 700;
+    }
+
+    .opening-label {
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding-bottom: 12px;
+    }
+
+    .opening-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 34px;
+      line-height: 1.1;
+      color: #0c0c0c;
+      padding-bottom: 12px;
+    }
+
+    .opening-subtitle {
+      font-size: 15px;
+      line-height: 1.45;
+      color: var(--text-secondary);
+    }
+
+    .opening-image {
+      width: 368px;
+      height: 276px;
+      background: #d9d9d9;
+      flex-shrink: 0;
+    }
+
+    .opening-caption {
+      font-size: 12px;
+      text-transform: uppercase;
+      width: 662px;
+      margin-top: 8px;
+    }
+
+    /* ===== CONTENT AREA ===== */
+    .content-area {
+      width: 1152px;
+      margin: 0 auto;
+      display: flex;
+      gap: 122px;
+    }
+
+    .content-main {
+      width: 662px;
+      flex-shrink: 0;
+    }
+
+    .content-sidebar {
+      width: 368px;
+      flex-shrink: 0;
+    }
+
+    /* --- Meta row --- */
+    .meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .meta-author {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 312px;
+    }
+
+    .meta-byline {
+      font-size: 14px;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .meta-byline span {
+      font-weight: 700;
+    }
+
+    .meta-dates {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      line-height: 1;
+      opacity: 0.5;
+    }
+
+    .meta-dates em {
+      font-style: italic;
+    }
+
+    .share-buttons {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .share-btn {
+      background: var(--bg-neutral);
+      border-radius: 80px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+
+    .share-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ===== AUDIO PLAYER ===== */
+    .audio-player-wrap {
+      padding-top: 32px;
+    }
+
+    .audio-player {
+      width: 100%;
+    }
+
+    .audio-player .player-default {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 0;
+      border-top: 0.5px solid var(--border-primary);
+      border-bottom: 0.5px solid var(--border-primary);
+      cursor: pointer;
+    }
+
+    .audio-player .player-loading,
+    .audio-player .player-playing {
+      display: none;
+    }
+
+    .audio-player.state-loading .player-default { display: none; }
+    .audio-player.state-loading .player-loading { display: flex; }
+    .audio-player.state-playing .player-default { display: none; }
+    .audio-player.state-playing .player-playing { display: flex; }
+
+    .btn-play {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #000;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.15s ease;
+    }
+    .btn-play:hover { transform: scale(1.05); }
+    .btn-play:active { transform: scale(0.97); }
+    .btn-play svg { fill: #fff; }
+
+    .btn-loading {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .spinner {
+      width: 34px;
+      height: 34px;
+      border: 3px solid #d9d9d9;
+      border-top: 3px solid #000;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .btn-pause {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: transparent;
+      border: 2px solid #000;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.15s ease;
+    }
+    .btn-pause:hover { transform: scale(1.05); }
+    .btn-pause:active { transform: scale(0.97); }
+    .btn-pause svg { fill: #000; }
+
+    .player-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .player-info-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .player-title {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 16px;
+      color: #000;
+      letter-spacing: -0.24px;
+      white-space: nowrap;
+    }
+
+    .player-divider {
+      width: 1px;
+      height: 14px;
+      background: #000;
+      flex-shrink: 0;
+    }
+
+    .player-duration {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 16px;
+      color: var(--text-secondary);
+      letter-spacing: -0.24px;
+    }
+
+    .player-loading {
+      align-items: center;
+      gap: 16px;
+      padding: 16px 0;
+      border-top: 0.5px solid var(--border-primary);
+      border-bottom: 0.5px solid var(--border-primary);
+    }
+
+    .player-playing {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .player-playing-border {
+      width: 100%;
+      height: 0.5px;
+      background: var(--border-primary);
+    }
+
+    .player-playing-content {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .player-playing-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .player-playing-title-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .player-playing-title-row .player-duration { font-size: 15px; }
+
+    .player-progress-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .player-progress-inner {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .player-time {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: #000;
+      white-space: nowrap;
+    }
+
+    .player-timeline {
+      flex: 1;
+      height: 4px;
+      background: #d9d9d9;
+      border-radius: 200px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .player-timeline-progress {
+      height: 100%;
+      background: var(--chrome-darkgray);
+      border-radius: 200px;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    .player-timeline:hover .player-timeline-progress { background: #333; }
+
+    .player-speed {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 20px;
+      color: #000;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-shrink: 0;
+      padding: 4px;
+      border-radius: 4px;
+      min-width: 30px;
+      text-align: center;
+    }
+    .player-speed:hover { background: #f0f0f0; }
+
+    /* ===== ARTICLE BODY ===== */
+    .article-body {
+      padding-top: 32px;
+    }
+
+    .article-paragraph {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      line-height: 1.67;
+      color: var(--text-primary);
+      padding-bottom: 0;
+    }
+
+    .article-paragraph + .article-paragraph {
+      padding-top: 32px;
+    }
+
+    .article-paragraph a {
+      font-weight: 700;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .article-image-block {
+      padding-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .article-image-block .image-placeholder {
+      width: 100%;
+      aspect-ratio: 203 / 135;
+      background: #d9d9d9;
+    }
+
+    .article-image-block .image-caption {
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .article-heading {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 30px;
+      padding-top: 64px;
+    }
+
+    .article-heading + .article-paragraph {
+      padding-top: 16px;
+    }
+
+    /* --- Blockquote --- */
+    .article-quote {
+      padding-top: 48px;
+      border-left: 4px solid #000;
+      padding-left: 24px;
+    }
+
+    .article-quote p {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 1.15;
+      max-width: 564px;
+    }
+
+    /* --- TE PUEDE INTERESAR --- */
+    .related-inline {
+      padding-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .related-inline-header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .related-inline-header h4 {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .related-inline-header hr {
+      border: none;
+      border-top: 0.5px solid var(--border-primary);
+    }
+
+    .related-inline-content {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      position: relative;
+    }
+
+    .related-inline-image {
+      width: 368px;
+      height: 276px;
+      background: #d9d9d9;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .related-inline-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: #fff;
+      padding: 6px 12px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 18px;
+    }
+
+    .related-inline-text {
+      flex: 1;
+      min-width: 231px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .related-inline-text h3 {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .related-inline-text .byline {
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .related-inline-bottom-line {
+      border: none;
+      border-top: 0.5px solid var(--border-primary);
+    }
+
+    /* --- NEWSLETTER --- */
+    .newsletter-block {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .newsletter-content {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .newsletter-image {
+      flex: 1;
+      aspect-ratio: 1;
+      background: #d9d9d9;
+    }
+
+    .newsletter-text {
+      flex: 1;
+      min-width: 231px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .newsletter-text h3 {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .newsletter-text p {
+      font-size: 14px;
+      opacity: 0.5;
+      line-height: 1.45;
+    }
+
+    .btn-dark {
+      background: var(--text-primary);
+      color: #fff;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 2px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      cursor: pointer;
+      align-self: flex-start;
+    }
+
+    /* --- AFFILIATION --- */
+    .affiliation-block {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .affiliation-block .aff-header h4 {
+      text-align: center;
+    }
+
+    .affiliation-body {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .affiliation-image {
+      width: 100%;
+      aspect-ratio: 203/114;
+      background: #d9d9d9;
+    }
+
+    .affiliation-body h3 {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .affiliation-buttons {
+      display: flex;
+      gap: 24px;
+    }
+
+    /* --- Portrait image --- */
+    .article-portrait-block {
+      padding-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .article-portrait-block .portrait-image {
+      width: 100%;
+      aspect-ratio: 203/361;
+      background: #d9d9d9;
+    }
+
+    .article-portrait-block .image-caption {
+      font-size: 12px;
+      text-transform: uppercase;
+      width: 368px;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar-placeholder {
+      width: 300px;
+      height: 600px;
+      background: var(--accent-pink);
+      opacity: 0.64;
+      margin-left: 34px;
+    }
+
+    /* ===== TAGS ===== */
+    .tags-section {
+      width: 1152px;
+      margin: 48px auto 0;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 8px 16px;
+      background: var(--bg-neutral);
+      border-radius: 80px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ===== RELATED ARTICLES (EL REDACTOR RECOMIENDA) ===== */
+    .recommended-section {
+      width: 1152px;
+      margin: 64px auto 0;
+    }
+
+    .recommended-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 24px;
+      padding-bottom: 24px;
+      border-bottom: 0.5px solid var(--border-primary);
+      margin-bottom: 24px;
+    }
+
+    .recommended-grid {
+      display: flex;
+      gap: 24px;
+    }
+
+    .recommended-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .recommended-card .card-image {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #d9d9d9;
+    }
+
+    .recommended-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .recommended-card .card-author {
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* ===== COMMENTS ===== */
+    .comments-section {
+      width: 1152px;
+      margin: 64px auto 80px;
+      display: flex;
+      gap: 122px;
+    }
+
+    .comments-main {
+      width: 662px;
+      flex-shrink: 0;
+    }
+
+    .comments-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 24px;
+      border-bottom: 0.5px solid var(--border-primary);
+    }
+
+    .comments-header h3 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .comments-header .count {
+      background: var(--bg-neutral);
+      border-radius: 80px;
+      padding: 4px 12px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .comments-tabs {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 0.5px solid var(--border-primary);
+    }
+
+    .comments-tabs span {
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .comments-tabs span:first-child { font-weight: 700; }
+
+    .comment-input {
+      padding: 24px 0;
+      border-bottom: 0.5px solid var(--border-primary);
+    }
+
+    .comment-input p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      padding: 12px 0;
+    }
+
+    .comment-input .btn-submit {
+      background: var(--text-primary);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 2px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .comment-item {
+      padding: 24px 0;
+      border-bottom: 0.5px solid #e4e4e4;
+    }
+
+    .comment-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .comment-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #d9d9d9;
+    }
+
+    .comment-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 15px;
+      text-transform: uppercase;
+    }
+
+    .comment-meta .date {
+      color: var(--text-tertiary);
+    }
+
+    .comment-body {
+      font-size: 18px;
+      line-height: 1.56;
+      color: var(--text-tertiary);
+      padding-left: 56px;
+    }
+
+    .comment-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid #e4e4e4;
+      margin-top: 24px;
+    }
+
+    .comment-actions-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .vote-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .vote-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg-neutral);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .comment-actions span {
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .comment-actions span.bold { font-weight: 700; }
+
+    .reply-count {
+      font-size: 15px;
+      color: var(--text-tertiary);
+      padding: 24px 0 0 56px;
+    }
+
+    /* ======================================================
+       RESPONSIVE: Mobile (max-width: 768px)
+       Figma: 375px viewport, 15.5px padding = 344px content
+       ====================================================== */
+    @media (max-width: 768px) {
+
+      /* Header */
+      .header-inner {
+        width: 100%;
+        padding: 0 16px;
+      }
+
+      /* Breadcrumbs */
+      .breadcrumbs {
+        width: 100%;
+        padding: 14px 16px;
+      }
+
+      .breadcrumbs-section { font-size: 18px; }
+      .breadcrumbs-subsection { font-size: 18px; }
+      .breadcrumbs-dot { width: 8px; height: 8px; }
+
+      /* Banner */
+      .banner-inner {
+        width: 100%;
+        height: 100px;
+      }
+
+      /* Article opening */
+      .article-opening {
+        width: 100%;
+        padding: 0 16px 24px;
+      }
+
+      .opening-row {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .opening-text {
+        width: 100%;
+        padding-bottom: 24px;
+      }
+
+      .opening-title {
+        font-size: 28px;
+      }
+
+      .opening-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 203/152;
+      }
+
+      .opening-caption {
+        width: 100%;
+      }
+
+      /* Content area */
+      .content-area {
+        width: 100%;
+        padding: 0 16px;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .content-main {
+        width: 100%;
+      }
+
+      .content-sidebar {
+        display: none;
+      }
+
+      /* Meta row */
+      .meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+      }
+
+      .meta-author {
+        width: 100%;
+      }
+
+      .share-buttons {
+        justify-content: flex-start;
+      }
+
+      /* Audio player */
+      .audio-player-wrap {
+        padding-top: 24px;
+      }
+
+      .player-time {
+        font-size: 12px;
+      }
+
+      /* Article body */
+      .article-paragraph {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .article-heading {
+        font-size: 20px;
+        padding-top: 48px;
+      }
+
+      .article-quote p {
+        font-size: 24px;
+      }
+
+      /* Related inline */
+      .related-inline-content {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .related-inline-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4/3;
+      }
+
+      .related-inline-text {
+        min-width: 0;
+      }
+
+      /* Newsletter */
+      .newsletter-content {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .newsletter-image {
+        width: 100%;
+        aspect-ratio: 1;
+      }
+
+      /* Affiliation */
+      .affiliation-buttons {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+      }
+
+      .affiliation-buttons .btn-dark {
+        width: 100%;
+        text-align: center;
+      }
+
+      /* Portrait image */
+      .article-portrait-block .portrait-image {
+        width: 100%;
+      }
+
+      .article-portrait-block .image-caption {
+        width: 100%;
+      }
+
+      /* Tags */
+      .tags-section {
+        width: 100%;
+        padding: 0 16px;
+        margin-top: 32px;
+      }
+
+      .tag {
+        font-size: 13px;
+        padding: 8px 14px;
+      }
+
+      /* Recommended */
+      .recommended-section {
+        width: 100%;
+        padding: 0 16px;
+        margin-top: 48px;
+      }
+
+      .recommended-grid {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      /* Comments */
+      .comments-section {
+        width: 100%;
+        padding: 0 16px;
+        margin: 48px 0 60px;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .comments-main {
+        width: 100%;
+      }
+
+      .comments-section .content-sidebar {
+        display: none;
+      }
+
+      .comment-body {
+        font-size: 16px;
+        padding-left: 0;
+      }
+
+      .reply-count {
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-menu">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="header-logo">EL CONFIDENCIAL</div>
+      <div class="header-user">
+        <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== BREADCRUMBS ===== -->
+  <nav class="breadcrumbs">
+    <span class="breadcrumbs-section">Europa</span>
+    <div class="breadcrumbs-dot"></div>
+    <span class="breadcrumbs-subsection">Brexit</span>
+  </nav>
+
+  <!-- ===== BANNER ===== -->
+  <div class="banner">
+    <div class="banner-inner"></div>
+  </div>
+
+  <!-- ===== ARTICLE OPENING ===== -->
+  <div class="article-opening">
+    <div class="opening-row">
+      <div class="opening-text">
+        <div class="opening-label">PRECIO EQUITATIVO</div>
+        <h1 class="opening-title">La CNMV se prepara para una segunda opa entre la presión de BBVA y Sabadell</h1>
+        <p class="opening-subtitle">Los dos bancos aluden al papel del supervisor y a la Ley de Opas ante la posibilidad de que BBVA se quede entre un 30% y un 50% de aceptación. El plazo acaba el viernes.</p>
+      </div>
+      <div class="opening-image"></div>
+    </div>
+    <p class="opening-caption">El presidente de la CNMV, Carlos San Basilio. (Europa Press /Carlos Luján)</p>
+  </div>
+
+  <!-- ===== CONTENT AREA ===== -->
+  <div class="content-area">
+    <!-- MAIN COLUMN -->
+    <div class="content-main">
+
+      <!-- Meta row -->
+      <div class="meta-row">
+        <div class="meta-author">
+          <div class="meta-byline">por <span>nombre apellidos</span></div>
+          <div class="meta-dates">
+            <span>05/05/2025</span>
+            <span>08:24</span>
+            <span>|</span>
+            <em>Actualizado:</em>
+            <span>05/05/2025</span>
+          </div>
+        </div>
+        <div class="share-buttons">
+          <button class="share-btn" aria-label="Compartir en X">
+            <svg viewBox="0 0 18 18"><path d="M10.7 7.6L17.4 0h-1.6l-5.8 6.6L5.4 0H0l7 10.2L0 18h1.6l6.1-7.1L12.6 18H18L10.7 7.6z" fill="#121212"/></svg>
+          </button>
+          <button class="share-btn" aria-label="Compartir en Facebook">
+            <svg viewBox="0 0 18 18"><path d="M16.5 0h-15C.67 0 0 .67 0 1.5v15c0 .83.67 1.5 1.5 1.5H9v-7H7V8.5h2V6.5C9 4.57 10.57 3 12.5 3H15v2.5h-1.5c-.83 0-1 .42-1 1V8.5h3L15 11h-2.5v7h4c.83 0 1.5-.67 1.5-1.5v-15c0-.83-.67-1.5-1.5-1.5z" fill="#121212"/></svg>
+          </button>
+          <button class="share-btn" aria-label="Comentarios">
+            <svg viewBox="0 0 18 18"><path d="M1 1h16v12H5l-4 4V1z" fill="none" stroke="#121212" stroke-width="1.5"/></svg>
+            <span>55</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ===== AUDIO PLAYER ===== -->
+      <div class="audio-player-wrap">
+        <div class="audio-player" id="audioPlayer">
+          <!-- STATE: Default -->
+          <div class="player-default" id="playerDefault">
+            <button class="btn-play" id="btnPlay" aria-label="Reproducir artículo">
+              <svg width="14" height="18" viewBox="0 0 14 18" fill="none"><path d="M0 0V18L14 9L0 0Z" fill="white"/></svg>
+            </button>
+            <div class="player-info">
+              <div class="player-info-row">
+                <span class="player-title">Escuchar artículo</span>
+                <div class="player-divider"></div>
+                <span class="player-duration">4 min</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STATE: Loading -->
+          <div class="player-loading" id="playerLoading">
+            <button class="btn-loading" id="btnLoading" aria-label="Cargando...">
+              <div class="spinner"></div>
+            </button>
+            <div class="player-info">
+              <div class="player-info-row">
+                <span class="player-title">Escuchar artículo</span>
+                <div class="player-divider"></div>
+                <span class="player-duration">4 min</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STATE: Playing -->
+          <div class="player-playing" id="playerPlaying">
+            <div class="player-playing-border"></div>
+            <div class="player-playing-content">
+              <button class="btn-pause" id="btnPauseAction" aria-label="Pausar">
+                <svg width="12" height="16" viewBox="0 0 12 16" fill="none">
+                  <rect width="4" height="16" fill="black"/>
+                  <rect x="8" width="4" height="16" fill="black"/>
+                </svg>
+              </button>
+              <button class="btn-play" id="btnResumeAction" aria-label="Reanudar" style="display:none">
+                <svg width="14" height="18" viewBox="0 0 14 18" fill="none">
+                  <path d="M0 0V18L14 9L0 0Z" fill="white"/>
+                </svg>
+              </button>
+              <div class="player-playing-info">
+                <div class="player-playing-title-row">
+                  <span class="player-title">Escuchar artículo</span>
+                  <div class="player-divider" style="height:12px"></div>
+                  <span class="player-duration">4 min</span>
+                </div>
+                <div class="player-progress-row">
+                  <div class="player-progress-inner">
+                    <span class="player-time" id="playerTime">0:00 / 4:31</span>
+                    <div class="player-timeline" id="playerTimeline">
+                      <div class="player-timeline-progress" id="playerProgress"></div>
+                    </div>
+                  </div>
+                  <button class="player-speed" id="btnSpeed">1x</button>
+                </div>
+              </div>
+            </div>
+            <div class="player-playing-border"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ARTICLE BODY ===== -->
+      <div class="article-body">
+        <p class="article-paragraph">En medio de <a href="#">una nueva guerra fría con Occidente</a>, la Rusia de Vladimir Putin ha abierto de par en par las puertas a los extranjeros desencantados con las democracias liberales, alimentando el mito del "paraíso conservador". El visado para personas que comparten los "valores tradicionales", conocido también como visado "anti-woke", introducido en agosto de 2024 mediante decreto presidencial, está dirigido a ciudadanos extranjeros que "comparten los valores espirituales y morales tradicionales de Rusia". Pueden acceder personas procedentes de 47 países, principalmente de Europa y Norteamérica, que Moscú considera "hostiles" por haberle impuesto sanciones tras la invasión de Ucrania.</p>
+
+        <p class="article-paragraph">"Obviamente me identifico con los valores tradicionales de Rusia, como la familia, pero sobre todo no me identifico con los valores de Occidente", cuenta Costantino, pequeño empresario italiano de 41 años que se trasladó de Roma a Rusia con este tipo de visado. "En Europa las minorías deciden en lugar de la mayoría en muchos asuntos, y luego no me gustan los dobles raseros sobre Palestina y Ucrania: hay un genocidio a cielo abierto en Gaza y no hacen nada", explica Costantino, que recientemente obtuvo el permiso de residencia. Hoy vive en San Petersburgo, donde compró una casa, trabaja en línea y estudia ruso.</p>
+
+        <div class="article-image-block">
+          <div class="image-placeholder"></div>
+          <span class="image-caption">El presidente de la CNMV, Carlos San Basilio. (Europa Press /Carlos Luján)</span>
+        </div>
+
+        <p class="article-paragraph" style="padding-top:48px">"Los solicitantes son en su mayoría hombres de entre veinte y cincuenta años, pequeños empresarios o personas que trabajan en línea", explica Ivo Van Rhijn de Van Rhijn &amp; Partners, agencia que asiste a extranjeros interesados en establecerse en Rusia con este nuevo tipo de visado.</p>
+
+        <h2 class="article-heading">Más seguridad, menor costo de vida</h2>
+
+        <p class="article-paragraph">"Obviamente me identifico con los valores tradicionales de Rusia, como la familia, pero sobre todo no me identifico con los valores de Occidente", cuenta Costantino, pequeño empresario italiano de 41 años que se trasladó de Roma a Rusia con este tipo de visado. "En Europa las minorías deciden en lugar de la mayoría en muchos asuntos, y luego no me gustan los dobles raseros sobre Palestina y Ucrania: hay un genocidio a cielo abierto en Gaza y no hacen nada", explica Costantino, que recientemente obtuvo el permiso de residencia. Hoy vive en San Petersburgo, donde compró una casa, trabaja en línea y estudia ruso.</p>
+
+        <!-- TE PUEDE INTERESAR -->
+        <div class="related-inline">
+          <div class="related-inline-header">
+            <h4>TE PUEDE INTERESAR</h4>
+            <hr>
+          </div>
+          <div class="related-inline-content">
+            <div class="related-inline-image">
+              <div class="related-inline-label">Opinión</div>
+            </div>
+            <div class="related-inline-text">
+              <h3>El inesperado éxito de los visados 'anti-woke' del Kremlin: por qué cientos de occidentales se están mudando a Rusia</h3>
+              <span class="byline">por ángel villarino</span>
+            </div>
+          </div>
+          <hr class="related-inline-bottom-line">
+        </div>
+
+        <p class="article-paragraph" style="padding-top:48px">"Obviamente me identifico con los valores tradicionales de Rusia, como la familia, pero sobre todo no me identifico con los valores de Occidente", cuenta Costantino, pequeño empresario italiano de 41 años que se trasladó de Roma a Rusia con este tipo de visado. "En Europa las minorías deciden en lugar de la mayoría en muchos asuntos, y luego no me gustan los dobles raseros sobre Palestina y Ucrania: hay un genocidio a cielo abierto en Gaza y no hacen nada", explica Costantino, que recientemente obtuvo el permiso de residencia. Hoy vive en San Petersburgo, donde compró una casa, trabaja en línea y estudia ruso.</p>
+
+        <!-- BLOCKQUOTE -->
+        <div class="article-quote">
+          <p>"Obviamente me identifico con los valores tradicionales de Rusia, como la familia, pero sobre todo no me identifico con los valores de Occidente"</p>
+        </div>
+
+        <p class="article-paragraph" style="padding-top:48px">"Obviamente me identifico con los valores tradicionales de Rusia, como la familia, pero sobre todo no me identifico con los valores de Occidente", cuenta Costantino, pequeño empresario italiano de 41 años que se trasladó de Roma a Rusia con este tipo de visado. "En Europa las minorías deciden en lugar de la mayoría en muchos asuntos, y luego no me gustan los dobles raseros sobre Palestina y Ucrania: hay un genocidio a cielo abierto en Gaza y no hacen nada", explica Costantino, que recientemente obtuvo el permiso de residencia. Hoy vive en San Petersburgo, donde compró una casa, trabaja en línea y estudia ruso.</p>
+
+        <!-- PORTRAIT IMAGE -->
+        <div class="article-portrait-block">
+          <div class="portrait-image"></div>
+          <span class="image-caption">El presidente de la CNMV, Carlos San Basilio. (Europa Press /Carlos Luján)</span>
+        </div>
+
+        <p class="article-paragraph" style="padding-top:48px">"Obviamente me identifico con los valores tradicionales de Rusia, como la familia, pero sobre todo no me identifico con los valores de Occidente", cuenta Costantino, pequeño empresario italiano de 41 años que se trasladó de Roma a Rusia con este tipo de visado. "En Europa las minorías deciden en lugar de la mayoría en muchos asuntos, y luego no me gustan los dobles raseros sobre Palestina y Ucrania: hay un genocidio a cielo abierto en Gaza y no hacen nada", explica Costantino, que recientemente obtuvo el permiso de residencia. Hoy vive en San Petersburgo, donde compró una casa, trabaja en línea y estudia ruso.</p>
+
+        <!-- NEWSLETTER -->
+        <div class="newsletter-block">
+          <div class="related-inline-header">
+            <h4>NEWSLETTER</h4>
+            <hr>
+          </div>
+          <div class="newsletter-content">
+            <div class="newsletter-image"></div>
+            <div class="newsletter-text">
+              <h3>Cotizalia AM</h3>
+              <p>Lorem ipsum dolor sit amet consectetur. Cras posuere tempor molestie orci diam sagittis. Consectetur dui nunc odio ipsum.</p>
+              <button class="btn-dark">Botón Default</button>
+            </div>
+          </div>
+          <hr class="related-inline-bottom-line">
+        </div>
+
+        <p class="article-paragraph" style="padding-top:48px">"Obviamente me identifico con los valores tradicionales de Rusia, como la familia, pero sobre todo no me identifico con los valores de Occidente", cuenta Costantino, pequeño empresario italiano de 41 años que se trasladó de Roma a Rusia con este tipo de visado. "En Europa las minorías deciden en lugar de la mayoría en muchos asuntos, y luego no me gustan los dobles raseros sobre Palestina y Ucrania: hay un genocidio a cielo abierto en Gaza y no hacen nada", explica Costantino, que recientemente obtuvo el permiso de residencia. Hoy vive en San Petersburgo, donde compró una casa, trabaja en línea y estudia ruso.</p>
+
+        <!-- AFFILIATION -->
+        <div class="affiliation-block">
+          <div class="related-inline-header aff-header">
+            <h4>BUEN AÑO PARA RENOVAR</h4>
+            <hr>
+          </div>
+          <div class="affiliation-body">
+            <div class="affiliation-image"></div>
+            <h3>iPhone 17 pro y iPhone 17</h3>
+            <div class="affiliation-buttons">
+              <button class="btn-dark">Botón Afiliación</button>
+              <button class="btn-dark">Botón Afiliación</button>
+            </div>
+          </div>
+          <hr class="related-inline-bottom-line">
+        </div>
+
+        <p class="article-paragraph" style="padding-top:48px">"Obviamente me identifico con los valores tradicionales de Rusia, como la familia, pero sobre todo no me identifico con los valores de Occidente", cuenta Costantino, pequeño empresario italiano de 41 años que se trasladó de Roma a Rusia con este tipo de visado. "En Europa las minorías deciden en lugar de la mayoría en muchos asuntos, y luego no me gustan los dobles raseros sobre Palestina y Ucrania: hay un genocidio a cielo abierto en Gaza y no hacen nada", explica Costantino, que recientemente obtuvo el permiso de residencia. Hoy vive en San Petersburgo, donde compró una casa, trabaja en línea y estudia ruso.</p>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="content-sidebar">
+      <div class="sidebar-placeholder"></div>
+    </div>
+  </div>
+
+  <!-- ===== TAGS ===== -->
+  <div class="tags-section">
+    <span class="tag">55</span>
+    <span class="tag">55</span>
+    <span class="tag">55</span>
+  </div>
+
+  <!-- ===== RECOMMENDED ===== -->
+  <div class="tags-section" style="margin-top:32px; flex-wrap:wrap; gap:12px">
+    <span class="tag">¿Me lo compro?</span>
+    <span class="tag">iPhone</span>
+    <span class="tag">Economía</span>
+    <span class="tag">Política</span>
+    <span class="tag">El tag más largo</span>
+    <span class="tag">BBVA</span>
+  </div>
+
+  <div class="recommended-section">
+    <h3>El Redactor Recomienda</h3>
+    <div class="recommended-grid">
+      <div class="recommended-card">
+        <div class="card-image"></div>
+        <h4>El inesperado exito de los visados 'anti-woke' del Kremlin: por qué cientos de occidentales se estan mudando a Rusia</h4>
+        <span class="card-author">ángel villarino</span>
+      </div>
+      <div class="recommended-card">
+        <div class="card-image"></div>
+        <h4>El inesperado exito de los visados 'anti-woke' del Kremlin: por qué cientos de occidentales se estan mudando a Rusia</h4>
+        <span class="card-author">ángel villarino</span>
+      </div>
+      <div class="recommended-card">
+        <div class="card-image"></div>
+        <h4>El inesperado exito de los visados 'anti-woke' del Kremlin: por qué cientos de occidentales se estan mudando a Rusia</h4>
+        <span class="card-author">ángel villarino</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== COMMENTS ===== -->
+  <div class="comments-section">
+    <div class="comments-main">
+      <div class="comments-header">
+        <h3>Comentarios</h3>
+        <span class="count">5</span>
+      </div>
+
+      <div class="comment-input">
+        <p>Participa en el debate. ¡Escribe un comentario!</p>
+        <p style="color:#aaa; font-size:14px">Moderamos los comentarios de nuestra comunidad para asegurar una discusión sana y constructiva.</p>
+        <button class="btn-submit" style="margin-top:12px">Enviar comentario</button>
+      </div>
+
+      <div class="comments-tabs">
+        <span>Todos</span>
+        <span style="color:#737373">Mejor valorados</span>
+      </div>
+
+      <!-- Comment 1 -->
+      <div class="comment-item">
+        <div class="comment-header">
+          <div class="comment-avatar"></div>
+          <div class="comment-meta">
+            <span>Nombre del Comentarista</span>
+            <span class="date">aaaa-mm-yy hh:mm:ss</span>
+          </div>
+        </div>
+        <div class="comment-body">
+          Lorem ipsum dolor sit amet consectetur. In habitasse netus ac penatibus. Elementum adipiscing ultricies rhoncus semper urna purus pharetra. Fringilla purus amet cursus viverra felis venenatis urna. Quisque viverra hendrerit feugiat fames.
+        </div>
+        <div class="comment-actions">
+          <div class="comment-actions-left">
+            <div style="display:flex;gap:24px">
+              <div class="vote-group">
+                <button class="vote-btn" aria-label="Like">&#9650;</button>
+                <span style="font-size:15px">2</span>
+              </div>
+              <div class="vote-group">
+                <button class="vote-btn" aria-label="Dislike">&#9660;</button>
+                <span style="font-size:15px">2</span>
+              </div>
+            </div>
+            <span class="bold">Responder</span>
+          </div>
+          <span>Denunciar</span>
+        </div>
+      </div>
+
+      <!-- Comment 2 (with replies) -->
+      <div class="comment-item">
+        <div class="comment-header">
+          <div class="comment-avatar"></div>
+          <div class="comment-meta">
+            <span>Nombre del Comentarista</span>
+            <span class="date">aaaa-mm-yy hh:mm:ss</span>
+          </div>
+        </div>
+        <div class="comment-body">
+          Lorem ipsum dolor sit amet consectetur. In habitasse netus ac penatibus. Elementum adipiscing ultricies rhoncus semper urna purus pharetra. Fringilla purus amet cursus viverra felis venenatis urna. Quisque viverra hendrerit feugiat fames.
+        </div>
+        <div class="reply-count">6 RESPUESTAS</div>
+        <div class="comment-actions">
+          <div class="comment-actions-left">
+            <div style="display:flex;gap:24px">
+              <div class="vote-group">
+                <button class="vote-btn" aria-label="Like">&#9650;</button>
+                <span style="font-size:15px">2</span>
+              </div>
+              <div class="vote-group">
+                <button class="vote-btn" aria-label="Dislike">&#9660;</button>
+                <span style="font-size:15px">2</span>
+              </div>
+            </div>
+            <span class="bold">Responder</span>
+          </div>
+          <span>Denunciar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-sidebar">
+      <div class="sidebar-placeholder"></div>
+    </div>
+  </div>
+
+  <!-- ===== JAVASCRIPT: Simulated Audio Player ===== -->
+  <script>
+    (() => {
+      const player = document.getElementById('audioPlayer');
+      const btnPlay = document.getElementById('btnPlay');
+      const btnLoading = document.getElementById('btnLoading');
+      const btnPauseAction = document.getElementById('btnPauseAction');
+      const btnResumeAction = document.getElementById('btnResumeAction');
+      const btnSpeed = document.getElementById('btnSpeed');
+      const playerTime = document.getElementById('playerTime');
+      const playerProgress = document.getElementById('playerProgress');
+      const playerTimeline = document.getElementById('playerTimeline');
+
+      // Simulated audio state (no real audio)
+      const TOTAL_DURATION = 271; // 4:31 in seconds
+      let currentTime = 0;
+      let isPlaying = false;
+      let playInterval = null;
+
+      const speeds = [1, 1.25, 1.5, 2, 0.5, 0.75];
+      let currentSpeedIndex = 0;
+      let currentSpeed = 1;
+
+      function formatTime(seconds) {
+        const m = Math.floor(seconds / 60);
+        const s = Math.floor(seconds % 60);
+        return `${m}:${s.toString().padStart(2, '0')}`;
+      }
+
+      function setState(state) {
+        player.classList.remove('state-loading', 'state-playing');
+        if (state === 'loading') player.classList.add('state-loading');
+        if (state === 'playing') player.classList.add('state-playing');
+      }
+
+      function updatePlayPauseButton() {
+        if (isPlaying) {
+          btnPauseAction.style.display = '';
+          btnResumeAction.style.display = 'none';
+        } else {
+          btnPauseAction.style.display = 'none';
+          btnResumeAction.style.display = '';
+        }
+      }
+
+      function updateDisplay() {
+        playerTime.textContent = `${formatTime(currentTime)} / ${formatTime(TOTAL_DURATION)}`;
+        const pct = (currentTime / TOTAL_DURATION) * 100;
+        playerProgress.style.width = `${pct}%`;
+      }
+
+      function startPlayback() {
+        if (playInterval) clearInterval(playInterval);
+        isPlaying = true;
+        updatePlayPauseButton();
+        playInterval = setInterval(() => {
+          currentTime += 0.1 * currentSpeed;
+          if (currentTime >= TOTAL_DURATION) {
+            currentTime = 0;
+            stopPlayback();
+            setState('default');
+            updateDisplay();
+            return;
+          }
+          updateDisplay();
+        }, 100);
+      }
+
+      function stopPlayback() {
+        isPlaying = false;
+        updatePlayPauseButton();
+        if (playInterval) {
+          clearInterval(playInterval);
+          playInterval = null;
+        }
+      }
+
+      // Play button (default state) -> Loading -> Playing
+      btnPlay.addEventListener('click', () => {
+        setState('loading');
+        setTimeout(() => {
+          setState('playing');
+          startPlayback();
+        }, 800);
+      });
+
+      // Loading button -> Cancel
+      btnLoading.addEventListener('click', () => {
+        stopPlayback();
+        currentTime = 0;
+        setState('default');
+        updateDisplay();
+      });
+
+      // Pause button (playing state) - pause playback, stay in playing state
+      btnPauseAction.addEventListener('click', () => {
+        stopPlayback();
+      });
+
+      // Resume button (playing state, paused) - resume playback
+      btnResumeAction.addEventListener('click', () => {
+        startPlayback();
+      });
+
+      // Timeline click to seek
+      playerTimeline.addEventListener('click', (e) => {
+        const rect = playerTimeline.getBoundingClientRect();
+        const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        currentTime = pct * TOTAL_DURATION;
+        updateDisplay();
+      });
+
+      // Timeline drag
+      let isDragging = false;
+      playerTimeline.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        seekTo(e);
+      });
+      document.addEventListener('mousemove', (e) => {
+        if (isDragging) seekTo(e);
+      });
+      document.addEventListener('mouseup', () => { isDragging = false; });
+
+      function seekTo(e) {
+        const rect = playerTimeline.getBoundingClientRect();
+        const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        currentTime = pct * TOTAL_DURATION;
+        updateDisplay();
+      }
+
+      // Speed button
+      btnSpeed.addEventListener('click', () => {
+        currentSpeedIndex = (currentSpeedIndex + 1) % speeds.length;
+        currentSpeed = speeds[currentSpeedIndex];
+        btnSpeed.textContent = currentSpeed % 1 === 0 && currentSpeed !== 1
+          ? `${currentSpeed}x` : `${currentSpeed}x`;
+      });
+
+      // Initialize display
+      updateDisplay();
+    })();
+  </script>
+</body>
+</html>
